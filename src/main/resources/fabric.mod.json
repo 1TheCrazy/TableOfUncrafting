@@ -19,7 +19,8 @@
 		],
 		"fabric-datagen": [
 			"me.onethecrazy.TableOfUncraftingDataGenerator"
-		]
+		],
+		"client": [ "me.onethecrazy.TableOfUncraftingClient" ]
 	},
 	"mixins": [
 		"tableofuncrafting.mixins.json"

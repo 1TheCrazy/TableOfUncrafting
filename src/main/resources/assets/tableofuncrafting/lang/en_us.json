@@ -1,3 +1,4 @@
 {
-  "block.tableofuncrafting.uncrafting_table" : "Uncrafting Table"
+  "block.tableofuncrafting.uncrafting_table" : "Uncrafting Table",
+  "container.tableofuncrafting.uncrafting": "Uncrafting"
 }
