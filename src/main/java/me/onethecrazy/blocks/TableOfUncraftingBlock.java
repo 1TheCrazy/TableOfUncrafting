@@ -1,6 +1,5 @@
 package me.onethecrazy.blocks;
 
-import me.onethecrazy.TableOfUncrafting;
 import me.onethecrazy.sceen.UncraftingTableScreenHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,9 +25,8 @@ public class TableOfUncraftingBlock extends Block {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
             player.openHandledScreen(new SimpleNamedScreenHandlerFactory(
-                    (syncId, inventory, playerEntity) -> new UncraftingTableScreenHandler(syncId, inventory), TITLE
+                    (syncId, inventory, playerEntity) -> new UncraftingTableScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE
             ));
-            TableOfUncrafting.LOGGER.info("Should be here"); // <- this is printed
             return ActionResult.CONSUME;
         }
 

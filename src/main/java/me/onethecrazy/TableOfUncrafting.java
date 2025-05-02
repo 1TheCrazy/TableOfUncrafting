@@ -3,9 +3,6 @@ package me.onethecrazy;
 import me.onethecrazy.blocks.ModBlocks;
 import me.onethecrazy.sceen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
-
-import net.minecraft.resource.featuretoggle.FeatureFlags;
-import net.minecraft.screen.ScreenHandlerType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

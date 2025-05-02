@@ -4,13 +4,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import me.onethecrazy.TableOfUncrafting;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.screen.recipebook.RecipeBookProvider;
-import net.minecraft.client.gui.screen.recipebook.RecipeBookWidget;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.CraftingScreenHandler;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -26,7 +21,6 @@ public class UncraftingTableScreen extends HandledScreen<UncraftingTableScreenHa
         backgroundHeight = 166;
     }
 
-    /** centre the title */
     @Override protected void init() {
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
@@ -34,12 +28,13 @@ public class UncraftingTableScreen extends HandledScreen<UncraftingTableScreenHa
 
     @Override
     public void render(DrawContext ctx, int mouseX, int mouseY, float delta) {
-        this.renderBackground(ctx, mouseX, mouseY, delta);                    // darkens the world behind
-        super.render(ctx, mouseX, mouseY, delta); // draws slots & widgets
-        drawMouseoverTooltip(ctx, mouseX, mouseY);
+        this.renderBackground(ctx, mouseX, mouseY, delta);
+        super.render(ctx, mouseX, mouseY, delta);
+
+        this.drawMouseoverTooltip(ctx, mouseX, mouseY);
     }
 
-    /** draw the texture; called by super.render */
+
     @Override
     protected void drawBackground(DrawContext ctx,
                                   float delta,
