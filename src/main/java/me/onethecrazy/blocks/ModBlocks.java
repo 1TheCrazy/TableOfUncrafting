@@ -25,7 +25,7 @@ public class ModBlocks {
     );
 
 
-    // Default Template form fabric docs: https://docs.fabricmc.net/1.21/develop/blocks/first-block
+    // Default Template from fabric docs: https://docs.fabricmc.net/1.21/develop/blocks/first-block
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
         Identifier id = Identifier.of(TableOfUncrafting.MOD_ID, name);
 
