@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "multi_bench",
+  "key": {
+    "#": {
+      "item": "minecraft:crafting_table"
+    },
+    "A": {
+      "tag": "minecraft:axes"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "P": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "pattern": [
+    " D ",
+    "A#A",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tableofuncrafting:uncrafting_table"
+  }
+}

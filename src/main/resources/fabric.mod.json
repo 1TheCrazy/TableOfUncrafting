@@ -11,7 +11,7 @@
 		"sources": "https://github.com/1TheCrazy/TableOfUncrafting"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/tableofuncrafting/icon.png",
+	"icon": "assets/tableofuncrafting/table_of_uncrafting_icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
