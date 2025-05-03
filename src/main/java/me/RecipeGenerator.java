@@ -27,7 +27,7 @@ public class RecipeGenerator extends FabricRecipeProvider {
                 .pattern("A#A")
                 .pattern("PPP")
                 .input('#', Items.CRAFTING_TABLE)
-                .input('P', Items.OAK_PLANKS)
+                .input('P', ItemTags.PLANKS)
                 .input('A', ItemTags.AXES)
                 .input('D', Items.DIAMOND)
                 .showNotification(true)
