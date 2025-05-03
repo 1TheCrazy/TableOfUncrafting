@@ -15,3 +15,9 @@ Make sure you have Fabric installed!
 ## Dependencies
 This mod depends on the **Fabric-API**
 
+## Screenshots
+![Crafting Recipe](screenshots/crafting_recipe.png)
+![Endcrystal being uncrafted](screenshots/end_crystal.png)
+![Glass Pane being uncrafted](screenshots/glass_pane.png)
+![Note BLock being uncrafted](screenshots/block.png)
+![Sign being uncrafted](screenshots/sign.png)
