@@ -46,6 +46,8 @@ public class UncraftingTableScreenHandler extends ScreenHandler {
             for (int col = 0; col < 3; ++col) {
                 this.addSlot(new TableOfUncraftingOutputSlot(result,
                         input,
+                        this.ctx,
+                        this.world,
                         col + row * 3,
                         94 + col * 18,
                         17 + row * 18));
