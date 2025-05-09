@@ -1,7 +1,6 @@
 package me.onethecrazy.inventory;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import me.onethecrazy.TableOfUncrafting;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -13,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.EnchantmentTags;
-import net.minecraft.screen.GrindstoneScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.world.ServerWorld;
@@ -97,7 +95,7 @@ public class TableOfUncraftingOutputSlot extends Slot {
         ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
 
         for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentEntries()) {
-            RegistryEntry<Enchantment> registryEntry = (RegistryEntry<Enchantment>)entry.getKey();
+            RegistryEntry<Enchantment> registryEntry = entry.getKey();
             int j = entry.getIntValue();
             if (!registryEntry.isIn(EnchantmentTags.CURSE)) {
                 i += registryEntry.value().getMinPower(j);

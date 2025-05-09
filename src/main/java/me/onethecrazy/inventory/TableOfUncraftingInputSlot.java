@@ -1,7 +1,5 @@
 package me.onethecrazy.inventory;
 
-import me.onethecrazy.TableOfUncrafting;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,12 +8,8 @@ import net.minecraft.recipe.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class TableOfUncraftingInputSlot extends Slot {
     private final Inventory output;
@@ -27,8 +21,6 @@ public class TableOfUncraftingInputSlot extends Slot {
         this.output = outputInventory;
         this.world = world;
     }
-
-    @Override public boolean canInsert(ItemStack stack) { return true; }
 
     @Override
     public ItemStack takeStack(int amount) {
@@ -108,7 +100,7 @@ public class TableOfUncraftingInputSlot extends Slot {
             }
 
             // If we have a shaped recipe with only one ingredient, only show if input has enough of that ingredient (e.g. glass panes)
-            if(itemTypes.stream().count() == 1 && source.getCount() < shaped.getResult(world.getRegistryManager()).getCount()){
+            if(itemTypes.size() == 1 && source.getCount() < shaped.getResult(world.getRegistryManager()).getCount()){
                 return EMPTY_OUTPUT_FIELD;
             }
 
