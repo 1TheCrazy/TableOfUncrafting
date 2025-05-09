@@ -40,8 +40,6 @@ public class ModBlocks {
     public static void initialize() {
         TableOfUncrafting.LOGGER.info("Registering items for: " + TableOfUncrafting.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
-            entries.add(TABLE_OF_UNCRAFTING);
-        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.add(TABLE_OF_UNCRAFTING));
     }
 }

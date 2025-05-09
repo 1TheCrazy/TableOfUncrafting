@@ -1,7 +1,6 @@
 package me.onethecrazy.inventory;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import me.onethecrazy.TableOfUncrafting;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -13,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.EnchantmentTags;
-import net.minecraft.screen.GrindstoneScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.world.ServerWorld;
@@ -47,9 +45,13 @@ public class TableOfUncraftingOutputSlot extends Slot {
                 if (world instanceof ServerWorld) {
                     ExperienceOrbEntity.spawn((ServerWorld)world, Vec3d.ofCenter(pos), this.getExperience(world));
                 }
-
-                world.syncWorldEvent(WorldEvents.GRINDSTONE_USED, pos, 0);
             });
+        }
+
+        // If the item is an edge case
+        if(TableOfUncraftingInputSlot.isEdgeCase(this.input.getStack(0).getItem())){
+            this.input.getStack(0).setCount(this.input.getStack(0).getCount() - 1);
+            return;
         }
 
         // Get the recipe
@@ -97,7 +99,7 @@ public class TableOfUncraftingOutputSlot extends Slot {
         ItemEnchantmentsComponent itemEnchantmentsComponent = EnchantmentHelper.getEnchantments(stack);
 
         for (Object2IntMap.Entry<RegistryEntry<Enchantment>> entry : itemEnchantmentsComponent.getEnchantmentEntries()) {
-            RegistryEntry<Enchantment> registryEntry = (RegistryEntry<Enchantment>)entry.getKey();
+            RegistryEntry<Enchantment> registryEntry = entry.getKey();
             int j = entry.getIntValue();
             if (!registryEntry.isIn(EnchantmentTags.CURSE)) {
                 i += registryEntry.value().getMinPower(j);

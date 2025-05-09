@@ -1,28 +1,16 @@
-// UncraftingTableScreenHandler.java
 package me.onethecrazy.sceen;
 
-import me.onethecrazy.TableOfUncrafting;
 import me.onethecrazy.inventory.TableOfUncraftingInputSlot;
 import me.onethecrazy.inventory.TableOfUncraftingInventory;
 import me.onethecrazy.inventory.TableOfUncraftingOutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class UncraftingTableScreenHandler extends ScreenHandler {
 
