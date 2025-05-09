@@ -45,9 +45,13 @@ public class TableOfUncraftingOutputSlot extends Slot {
                 if (world instanceof ServerWorld) {
                     ExperienceOrbEntity.spawn((ServerWorld)world, Vec3d.ofCenter(pos), this.getExperience(world));
                 }
-
-                world.syncWorldEvent(WorldEvents.GRINDSTONE_USED, pos, 0);
             });
+        }
+
+        // If the item is an edge case
+        if(TableOfUncraftingInputSlot.isEdgeCase(this.input.getStack(0).getItem())){
+            this.input.getStack(0).setCount(this.input.getStack(0).getCount() - 1);
+            return;
         }
 
         // Get the recipe

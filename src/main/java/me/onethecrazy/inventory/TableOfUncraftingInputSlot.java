@@ -1,20 +1,21 @@
 package me.onethecrazy.inventory;
 
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TableOfUncraftingInputSlot extends Slot {
     private final Inventory output;
     private final World world;
-    private static final ArrayList<ItemStack> EMPTY_OUTPUT_FIELD = createEmptyOutputField();
+    private static final ArrayList<ItemStack> EMPTY_OUTPUT_FIELD = getEmptyOutputField();
 
     public TableOfUncraftingInputSlot(Inventory inventory, Inventory outputInventory, int index, int x, int y, World world) {
         super(inventory, index, x, y);
@@ -49,7 +50,7 @@ public class TableOfUncraftingInputSlot extends Slot {
     }
 
     protected static ArrayList<ItemStack> GetUncraftRecipe(ItemStack source, World world){
-        ArrayList<ItemStack> recipeOut = createEmptyOutputField();
+        ArrayList<ItemStack> recipeOut = getEmptyOutputField();
 
         List<RecipeEntry<CraftingRecipe>> recipes =
                 world.getRecipeManager()
@@ -59,10 +60,29 @@ public class TableOfUncraftingInputSlot extends Slot {
                         .toList();
 
         // Not craftable
-        if(recipes.isEmpty())
-            return recipeOut;
+        if(recipes.isEmpty() && !isEdgeCase(source.getItem())){
+            return getEmptyOutputField();
+        }
+        // Edge Case
+        else if(isNetherite(source.getItem()))
+            return getNetheriteRecipe(source.getItem());
 
-        CraftingRecipe recipe = recipes.getFirst().value();
+        CraftingRecipe recipe;
+        // Cover cases for ingots
+        if(source.getItem() == Items.IRON_INGOT || source.getItem() == Items.COPPER_INGOT || source.getItem() == Items.NETHERITE_INGOT || source.getItem() == Items.GOLD_INGOT ){
+            // Show recipe for a block uncraft if we have enough items, otherwise show nugget uncraft
+            if(source.getCount() >= 9){
+                // Gold Ingots flip the default order of recipe-output
+                recipe = source.getItem() == Items.GOLD_INGOT ? recipes.get(1).value() : recipes.getFirst().value();
+            }
+            else{
+                recipe = source.getItem() == Items.GOLD_INGOT ? recipes.getFirst().value() : recipes.get(1).value();
+            }
+        }
+        else{
+            recipe = recipes.getFirst().value();
+        }
+
 
         if (recipe instanceof ShapedRecipe shaped) {
             int width  = shaped.getWidth();
@@ -121,7 +141,46 @@ public class TableOfUncraftingInputSlot extends Slot {
         return recipeOut;
     }
 
-    private static ArrayList<ItemStack> createEmptyOutputField(){
+    private static ArrayList<ItemStack> getNetheriteRecipe(Item source){
+        // The Map to map a Netherite Item to a Diamond Item
+        Map<Item, ItemStack> NETHERITE_TO_DIAMOND_MAP = new HashMap<>() {{
+            put(Items.NETHERITE_SWORD, Items.DIAMOND_SWORD.getDefaultStack());
+            put(Items.NETHERITE_PICKAXE, Items.DIAMOND_PICKAXE.getDefaultStack());
+            put(Items.NETHERITE_AXE, Items.DIAMOND_AXE.getDefaultStack());
+            put(Items.NETHERITE_SHOVEL, Items.DIAMOND_SHOVEL.getDefaultStack());
+            put(Items.NETHERITE_HOE, Items.DIAMOND_HOE.getDefaultStack());
+            put(Items.NETHERITE_HELMET, Items.DIAMOND_HELMET.getDefaultStack());
+            put(Items.NETHERITE_CHESTPLATE, Items.DIAMOND_CHESTPLATE.getDefaultStack());
+            put(Items.NETHERITE_LEGGINGS, Items.DIAMOND_LEGGINGS.getDefaultStack());
+            put(Items.NETHERITE_BOOTS, Items.DIAMOND_BOOTS.getDefaultStack());
+        }};
+
+        ArrayList<ItemStack> out = getEmptyOutputField();
+
+        out.set(4, NETHERITE_TO_DIAMOND_MAP.get(source));
+        out.set(1, Items.NETHERITE_INGOT.getDefaultStack());
+
+        return out;
+    }
+
+    private static boolean isNetherite(Item item) {
+        if (item instanceof SwordItem sword) {
+            return sword.getMaterial() == ToolMaterials.NETHERITE;
+        }
+        if (item instanceof net.minecraft.item.ToolItem tool) {
+            return tool.getMaterial() == ToolMaterials.NETHERITE;
+        }
+        if (item instanceof ArmorItem armor) {
+            return armor.getMaterial() == ArmorMaterials.NETHERITE;
+        }
+        return false;
+    }
+
+    public static boolean isEdgeCase(Item source){
+        return isNetherite(source);
+    }
+
+    private static ArrayList<ItemStack> getEmptyOutputField(){
         ArrayList<ItemStack> list = new ArrayList<>();
 
         for(int i = 0; i < 9; i++) {
