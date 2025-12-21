@@ -1,25 +1,20 @@
-# Table of Uncrafting
+# 🧩 Table of Uncrafting
 
-This mod adds a 'Uncrafting Table' allowing you to uncraft your Items!
+Ever wished you could take items apart instead of crafting them?  
+**Table of Uncrafting** introduces a brand-new *Uncrafting Table* that lets you break items back down into their components!
 
-## Features
-- Every item is supported, even **Mod-Items** from any other mod!
-- Easy Crafting Recipe
-- The Player gets Experience when uncrafting enchanted Items
+## ✨ Features
+- 🔓 **Universal Support** — Uncraft *any* item, including items added by other mods
+- 🛠️ **Simple Recipe** — Easy and intuitive to craft and use
+- 📘 **Experience Rewards** — Gain experience when uncrafting enchanted items
 
-## Installing
-Download it from [GitHub Releases](https://github.com/1TheCrazy/TableOfUncrafting/releases), [Modrinth](https://modrinth.com/mod/table-of-uncrafting) or [CurseForge](https://curseforge.com/minecraft/mc-mods/table-of-uncrafting)
+## 🤝 Contributing
 
-Then place it inside your `mods` folder for Minecraft.
+Contributions are welcome!  
+If you’d like to help improve **Table of Uncrafting**, feel free to:
 
-Make sure you have Fabric installed!
+- ⭐ Star the project on GitHub
+- 🐛 Report bugs or suggest features via [GitHub Issues](https://github.com/1TheCrazy/TableOfUncrafting/issues)
+- 🔧 Fork the repository and submit a Pull Request
 
-## Dependencies
-This mod depends on the **Fabric-API**
-
-## Screenshots
-![Crafting Recipe](https://github.com/1TheCrazy/TableOfUncrafting/blob/master/screenshots/crafting_recipe.gif)
-![Endcrystal being uncrafted](https://github.com/1TheCrazy/TableOfUncrafting/blob/master/screenshots/end_crystal.png)
-![Glass Pane being uncrafted](https://github.com/1TheCrazy/TableOfUncrafting/blob/master/screenshots/glass_pane.png)
-![Note BLock being uncrafted](https://github.com/1TheCrazy/TableOfUncrafting/blob/master/screenshots/note_block.png)
-![Sign being uncrafted](https://github.com/1TheCrazy/TableOfUncrafting/blob/master/screenshots/sign.png)
+Thanks for helping make the mod better! ❤️
